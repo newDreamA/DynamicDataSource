@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.CommonMapper" >
+
+	<resultMap id="AreaResultMap" type="com.example.bean.ConsultConfigArea" >
+		<result column="AREACODE" property="areaCode" jdbcType="VARCHAR" />
+		<result column="AREANAME" property="areaName" jdbcType="VARCHAR"/>
+		<result column="STATE" property="state"/>
+	</resultMap>
+
+
+
+	
+	<select id="qryArea"  resultMap="AreaResultMap">
+		
+		select * from consult_configarea
+		<!--<trim prefix="WHERE" prefixOverrides="AND|OR">
+				<if test="areaCode != null and areaCode != ''" >
+					and areaCode = #{areaCode,jdbcType=VARCHAR}
+				</if>
+				<if test="areaName != null and areaName != ''" >
+					and areaName = #{areaName,jdbcType=VARCHAR}
+				</if>
+				<if test="state != null and state != ''" >
+					and state = #{state}
+				</if>
+			</trim>
+			order by areaCode desc  
+			<if test="beginPage != null and beginPage != ''">
+			   LIMIT #{beginPage}
+			</if>
+			<if test="pageSize != null and pageSize != ''" >
+			   ,#{pageSize}
+			</if>-->
+	</select>
+	
+	<insert id="saveArea" parameterType="com.example.bean.ConsultConfigArea">
+		<!--<SelectKey></SelectKey>-->
+	insert into consult_configarea (AREACODE, AREANAME, STATE)
+		values (#{areaCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR},#{state,jdbcType=VARCHAR})
+	</insert>
+	
+
+	
+
+
+  
+
+
+	
+</mapper>

@@ -1,0 +1,29 @@
+package com.example;
+
+import com.example.dynamicDataSource.DynamicDataSourceRegister;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+@SpringBootApplication
+@MapperScan("com.example.mapper")
+@Import(DynamicDataSourceRegister.class)
+@EnableTransactionManagement
+
+public class DynamicDataSourceApplication  extends SpringBootServletInitializer {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DynamicDataSourceApplication.class, args);
+	}
+
+
+	@Override
+	protected SpringApplicationBuilder configure(
+			SpringApplicationBuilder builder) {
+		return builder.sources(this.getClass());
+	}
+}
